@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<script src="domove.js"></script>
+    <script src="getstyle.js"></script>
+    <script>
+        window.onload = function() {
+            var str = '';
+            var len = 20;
+            var aDiv = document.getElementsByTagName('div');
+            var timer = null;
+            var onOff = true;
+            //var j=0;
+            var speed = 12;
+            var target = 500;
+            for (var i = 0; i < len; i++) {
+                str += '<div style="width:50px;height:50px;background:red;position:absolute;top:0px;left:'+i*60+'px; box-shadow:inset "></div>';
+            }
+
+            document.body.innerHTML = str;//建造部
+            document.onclick = function(){
+                if (onOff){//判断ONOFF
+                    clearInterval(timer);
+                    onOff = false;
+                    var j = 0;
+                    timer = setInterval(
+                            function(){
+                                doMove(aDiv[j],speed,'top',target);
+                                j++;
+                                if (j == aDiv.length){//判断到底顶没?
+                                    clearInterval(timer);
+                                    //speed=-speed;
+                                    target=530-target;//翻转
+                                    onOff=true;
+                                    //alert(speed);
+                                }
+                            },100
+                    );
+
+                }
+
+
+                //alert('ok');
+
+                    //alert(j);
+
+            };
+        };
+    </script>
+</head>
+<body>
+
+</body>
+</html>
